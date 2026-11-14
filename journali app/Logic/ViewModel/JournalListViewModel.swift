@@ -11,7 +11,13 @@ import Combine
 class JournalListViewModel: ObservableObject {
 
     @Published var searchText = ""
-    @Published var entries: [JournalEntry] = []
+
+    // 📚 اليوميات (تنحفظ تلقائيًا 💾)
+    @Published var entries: [JournalEntry] = loadEntries() {
+        didSet {
+            saveEntries(entries: entries)
+        }
+    }
 
     // 🔽 الفلتر
     @Published var sortOption: SortOption = .date

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalEditorView: View {
 
-    @StateObject var viewModel = JournalEditorViewModel()
+    @StateObject private var viewModel = JournalEditorViewModel()
     @ObservedObject var listViewModel: JournalListViewModel
 
     var body: some View {
@@ -36,6 +36,7 @@ struct JournalEditorView: View {
 
                     TextEditor(text: $viewModel.content)
                         .scrollContentBackground(.hidden)
+                        .scrollDismissesKeyboard(.interactively)
                 }
             }
             .padding()
@@ -70,10 +71,8 @@ struct JournalEditorView: View {
                     } label: {
                         Image(systemName: "checkmark")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color("MainPurple"))
-                    .disabled(viewModel.title.isEmpty)
-                }
+                    .buttonStyle(.glassProminent)      .tint(Color("MainPurple"))
+                    .disabled(viewModel.canSave == false)                }
             }
         }
         .onAppear {

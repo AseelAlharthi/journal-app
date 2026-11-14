@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalListView: View {
 
-    @StateObject var viewModel = JournalListViewModel()
+    @StateObject private var viewModel = JournalListViewModel()
 
     var body: some View {
         NavigationStack {
@@ -19,6 +19,12 @@ struct JournalListView: View {
 
                 if viewModel.entries.isEmpty {
                     EmptyStateView()
+                } else if viewModel.filteredEntries.isEmpty {
+                    if viewModel.searchText.isEmpty {
+                        ContentUnavailableView("No Bookmarks", systemImage: "bookmark")
+                    } else {
+                        ContentUnavailableView.search(text: viewModel.searchText)
+                    }
                 } else {
                     List(viewModel.filteredEntries) { entry in
                         JournalCardView(entry: entry, viewModel: viewModel)

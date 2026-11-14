@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
 
-    @State var isActive = false
+    @State private var isActive = false
 
     var body: some View {
         if isActive {
@@ -39,8 +39,10 @@ struct SplashView: View {
                 }
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                    isActive = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        isActive = true
+                    }
                 }
             }
         }

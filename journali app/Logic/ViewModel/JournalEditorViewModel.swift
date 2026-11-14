@@ -18,8 +18,8 @@ class JournalEditorViewModel: ObservableObject {
     @Published var showDiscardAlert = false
 
     // نحفظ الكلام الأصلي عشان نعرف إذا تغير شيء
-    var originalTitle = ""
-    var originalContent = ""
+    private var originalTitle = ""
+    private var originalContent = ""
 
     // 📥 نعبّي الخانات (إذا تعديل)
     func load(entry: JournalEntry?) {
@@ -39,5 +39,13 @@ class JournalEditorViewModel: ObservableObject {
             return true
         }
         return false
+    }
+
+    // ✓ هل نقدر نحفظ؟
+    var canSave: Bool {
+        if title.trimmingCharacters(in: .whitespaces).isEmpty {
+            return false
+        }
+        return true
     }
 }

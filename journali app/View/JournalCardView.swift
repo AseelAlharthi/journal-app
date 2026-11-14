@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalCardView: View {
 
-    var entry: JournalEntry
+    let entry: JournalEntry
     @ObservedObject var viewModel: JournalListViewModel
 
     var body: some View {

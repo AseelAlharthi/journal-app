@@ -8,7 +8,7 @@
 import Foundation
 
 // شكل اليومية
-struct JournalEntry: Identifiable {
+struct JournalEntry: Identifiable, Codable {
     var id = UUID()
     var title: String
     var content: String
@@ -16,7 +16,7 @@ struct JournalEntry: Identifiable {
     var isBookmarked: Bool = false
 }
 
-// يوميات تجريبية (بنمسحها بعدين)
+// يوميات تجريبية للـ Preview فقط
 let sampleEntries: [JournalEntry] = [
     JournalEntry(title: "My Birthday", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", date: Date(), isBookmarked: true),
     JournalEntry(title: "Today's Journal", content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", date: Date()),
